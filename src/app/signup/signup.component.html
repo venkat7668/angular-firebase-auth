@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <h3>Sign up</h3>
+    <form class="col s12" [formGroup]="signupForm">
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input id="first_name" formControlName="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <input id="last_name" formControlName="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" formControlName="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" formControlName="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <button class="waves-effect waves-light btn" [disabled]="!signupForm.valid" (click)="signup()">Sign up</button>
+  <a class="btn-flat float-right" [routerLink]="['/login']">Login</a>
+</div>
