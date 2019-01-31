@@ -1,21 +1,32 @@
 <div class="container">
   <div class="row">
     <h3>Login</h3>
-    <form class="col s12">
+    <form class="col s12" [formGroup]="loginForm" >
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
+          <input id="email" type="email" class="validate" formControlName="email">
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
+          <input id="password" type="password" class="validate" formControlName="password">
           <label for="password">Password</label>
         </div>
       </div>
     </form>
   </div>
-  <a class="waves-effect waves-light btn" (click)="login()">Login</a>
+  <button class="waves-effect waves-light btn" [disabled]="!loginForm.valid" (click)="login()">Login</button>
   <a [routerLink]="['/signup']" class="btn-flat float-right">Signup</a>
 </div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal" #modal>
+    <div class="modal-content">
+      <h4>Alert</h4>
+      <p>Incorrect user name or password</p>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-green btn-flat">Ok</a>
+    </div>
+  </div>
