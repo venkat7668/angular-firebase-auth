@@ -7,18 +7,16 @@ import { Router } from '@angular/router';
     providedIn: 'root'
 })
 export class CommonService {
-    private authState: boolean = false;
+    private authState;
     public redirectURL: string = '';
 
     constructor(private db: AngularFirestore, private angularFireAuth: AngularFireAuth, private router: Router) {
         this.angularFireAuth.authState.subscribe((state) => {
-            console.log(state);
-            this.authState = !!state;
+            this.authState = state;
             if (this.redirectURL) {
                 this.router.navigate([this.redirectURL]);
             }
         })
-
     }
 
     signupWithEmailAndPassword(email: string, password: string) {
@@ -27,18 +25,27 @@ export class CommonService {
 
     loginWithEmailAndPassword(email: string, password: string) {
         return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
-        .then(()=>{
-            this.router.navigate(['/home']);
-        })
+            .then(() => {
+                this.router.navigate(['/home']);
+            })
     }
 
-    logout(){
-        return this.angularFireAuth.auth.signOut().then(()=>{
+    logout() {
+        return this.angularFireAuth.auth.signOut().then(() => {
             this.router.navigate(['/login']);
         })
     }
 
+    getUserDetails() {
+        const uid = this.angularFireAuth.auth.currentUser.uid;
+        return this.db.collection('users', (ref) => ref.where('id', '==', uid)).valueChanges();
+    }
+
+    get getUserMetaData() {
+        return this.angularFireAuth.auth.currentUser.metadata
+    }
+
     get isLoggedIn(): boolean {
-        return this.authState;
+        return !!this.authState;
     }
 }

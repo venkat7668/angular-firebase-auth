@@ -27,9 +27,7 @@ export class LoginComponent implements OnInit {
   login() {
     const values = this.loginForm.value;
     this.commonService.loginWithEmailAndPassword(values.email, values.password)
-      .then(data => {
-        console.log(data);
-      }).catch((er) => {
+      .catch((er) => {
         this.modalInstanceRef.open();
       })
   }

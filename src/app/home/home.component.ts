@@ -9,11 +9,20 @@ import { CommonService } from '../common/services/common.service'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private angularFireAuth: AngularFireAuth, private commonService:CommonService) { }
+  public userMetaData;
+  public userDetails;
+
+  constructor(private angularFireAuth: AngularFireAuth, private commonService: CommonService) { }
 
   ngOnInit() {
+    this.userMetaData = this.commonService.getUserMetaData;
+    this.commonService.getUserDetails().subscribe(data => {
+      this.userDetails = data[0];
+    })
   }
+
   logout() {
     this.commonService.logout();
   }
+
 }

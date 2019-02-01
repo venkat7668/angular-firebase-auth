@@ -31,9 +31,9 @@ export class SignupComponent implements OnInit {
       values['id'] = data.user['uid'];
       return user_collection.add(values)
     }).then((data) => {
-      console.log(data);
       this.router.navigate(['/home'])
-    });
+    }).catch(er => {
+      alert(er['message'])
+    })
   }
-
 }

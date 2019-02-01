@@ -1,4 +1,24 @@
-<p>
-  home works!
-</p>
-<button class="btn" (click)="logout()">Logout</button>
+<div class="container">
+  <h3>Welcome</h3>
+
+  <div class="row">
+    <div class="col s6">Name</div>
+    <div class="col s6">{{userDetails?.first_name}} {{userDetails?.last_name}}</div>
+  </div>
+  <div class="row">
+    <div class="col s6">Email</div>
+    <div class="col s6">{{userDetails?.email}}</div>
+  </div>
+  <div class="row">
+    <div class="col s6">Last Logedin at</div>
+    <div class="col s6">{{userMetaData?.lastSignInTime | date:'fullDate'}} {{userMetaData?.lastSignInTime |
+      date:'shortTime'}}</div>
+  </div>
+  <div class="row">
+    <div class="col s6">Last created on</div>
+    <div class="col s6">{{userMetaData?.creationTime | date:'fullDate'}}</div>
+  </div>
+  <div class="row">
+    <button class="btn" (click)="logout()">Logout</button>
+  </div>
+</div>
