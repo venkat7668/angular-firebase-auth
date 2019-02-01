@@ -1,6 +1,8 @@
-# AngularFirebaseAuth
+# Angular Firebase Authentication
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1.
+
+[Demo](https://angular-firebase-auth.herokuapp.com)
 
 ## Development server
 
